@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: whitesmoke;
+    color: #eee9e9;
+    display:contents;
+}
+
+
+section#hero {
+    text-align: center;
+    padding:100px;
+    min-height: 50vh;
+    color: #fff;
+    background-image: url('./library-hero.jpg'); /* 指定背景图片的路径 */
+    background-size:cover; /* 让背景图片填充整个区域 */
+    background-position: center; /* 将背景图片放置在区域的中心 */
+    /* 如果您希望背景图片重复，请使用 background-repeat 属性 */
+}
+
+
+.hero-content h1 {
+    font-size: 70px;
+    font-weight: 900;
+}
+
+.hero-content p {
+    font-size: 50px;
+    font-weight: 600;
+}
+#body{
+    background-image: url('./library-body.jpg');
+    background-size: fill; /* 让背景图片填充整个区域 */
+    background-position: center; /* 将背景图片放置在区域的中心 */
+    
+}
+section#body {
+    align-items: center;
+    text-align: center;
+    
+    align-content: center;
+    
+    padding: 50px;
+    background-color: white;
+}
+.body-title{
+    font-size: 7vh;
+}
+.subtitle {
+    margin:auto;
+    width:70%;
+    padding:25px;
+    font-size: 4vh;
+    margin-bottom: 40px;
+    background-color: rgba(12, 16, 57, 0.5); /* Purple transparent background */
+    border-radius: 15px ; /* 15px border */
+}
+
+.search-btn {
+    display: block;
+    width: 40vw;
+    
+    margin: 20px auto;
+    padding: 3vh ;
+    font-size:4vh;
+    background-color: rgba(0, 251, 255, 0.718);
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+   
+}

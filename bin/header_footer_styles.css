@@ -1,0 +1,127 @@
+/*-============ Header ===================-*/
+header {
+    
+    background-color: #1a3595;
+    color: #fff;
+    padding: 20px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    font-size: 28px;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding:20px;
+    border-radius: 15px;
+    transition: background-color 0.2s ease;
+}
+nav ul li a:hover {
+    border-radius: 15px;
+    background-color:  rgba(0, 251, 255, 0.3);/* Change background color on hover */
+
+}
+
+.user-actions a {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+/*-============ Footer ===================-*/
+
+
+footer {
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    background-color: #007bff;
+    color: #fff;
+    padding: 40px;
+    min-height: 30vh;
+    
+}
+.footer-left{
+    max-width: 400px;
+}
+.footer-left h3 {
+    font-size: 36px;
+    
+    
+}
+.footer-left p {
+    font-size: 24px;
+    
+}
+.footer-mid{
+    padding: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-left:100px;
+    color:aqua;
+    font-size: 24px;
+    width:70%
+}
+
+.footer-mid ul {
+    list-style-type:circle;
+    
+}
+
+.footer-mid ul li {
+    padding:10px;
+    
+}
+
+.footer-mid ul li a {
+    padding:10px;
+    width:max-content;
+    text-decoration:solid;
+    color: white;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.footer-mid ul li a:hover {
+    border-radius: 10px;
+    background-color:  rgba(0, 251, 255, 0.3);/* Change background color on hover */
+
+}
+
+.footer-right{
+    justify-content:flex-end;
+    align-self: flex-end;
+}
+
+.rights-reserved{
+    background-color: rgb(54, 54, 54);
+    color:white;
+    font-size: 18px;
+    flex:content;
+    justify-content: center;
+    align-items: center;
+    margin:0;
+    padding:5px;
+}
+
+.rights-reserved p{
+    justify-content: center;
+    align-self: auto;
+    margin:auto;
+    margin-left:20px;
+    
+}
