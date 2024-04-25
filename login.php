@@ -1,29 +1,17 @@
 <?php
-// 假設這是你的登錄邏輯，你可以根據需要進行修改
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+    # import session settings
+    require_once "includes/config.php";
+    
+    require_once "includes/login_view.inc.php";
 
-    // 檢查用戶名和密碼是否有效，這裡只是示例
-    if ($username === "admin" && $password === "password") {
-        // 登錄成功，將用戶信息保存到會話中
-        session_start();
-        $_SESSION["username"] = $username;
-
-        // 跳轉到前一個頁面
-        header("Location: " . $_SERVER["HTTP_REFERER"]);
-        exit();
-    } else {
-        $error_message = "Invalid username or password.";
-    }
-}
+    error_reporting(1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>ScholarMS-Login</title>
     <link rel="stylesheet" href="bin/login_styles.css">
     <link rel="stylesheet" href="bin/header_footer_styles.css">
 </head>
@@ -31,16 +19,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include 'header.php'; ?>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="login_process.php" method="POST">
+        <form action="includes/loginhandler.inc.php" method="POST">
             <div class="input-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="username" >
             </div>
             <div class="input-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" >
             </div>
             <button type="submit">Login</button>
+            <?php check_login_errors(); ?>
         </form>
     </div>
     <?php include 'footer.php'?>

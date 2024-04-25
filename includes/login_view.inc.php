@@ -21,14 +21,20 @@ function check_login_errors(){
 
     }
 }
-
+function set_login_section(){
+    if(isset($_SESSION["user_id"])){
+        echo '<p>[ '.$_SESSION["username"]. ' ]  <a href="includes/logout.inc.php">Logout</a></p>';
+        echo '';
+    }else{
+        echo '<a href="./login.php">Login</a> / <a href="signup.php">Sign Up</a>';
+    }
+}
 function show_login_user(){
-    
     
     if(isset($_SESSION["user_id"])){
         echo '<p>Welcome, '.$_SESSION["username"].'</p>';
     }else{
-        echo 'You have not login';
+        ;
     }
 
 

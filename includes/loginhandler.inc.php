@@ -31,8 +31,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $_SESSION["errors_login"] = $errors;
             #session_regenerate_id();
             
-            header("Location: ../index.php");
-            die();
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+            exit();
         }
         #require_once("config.php");
         #update session info, set login-user
@@ -44,6 +44,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $_SESSION["username"] = htmlspecialchars($result["username"] );
         $_SESSION["last_regeneration"] = time();
         header("Location: ../index.php?login=success");
+        
+
         $pd0 = null;
         $stmt = null;
         die();
