@@ -125,3 +125,10 @@ footer {
     margin-left:20px;
     
 }
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: whitesmoke;
+    color: #eee9e9;
+    display:contents;
+}

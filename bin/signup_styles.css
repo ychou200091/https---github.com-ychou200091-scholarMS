@@ -3,10 +3,11 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
+    display: contents;
     align-items: center;
     height: 100vh;
+    color:#0056b3;
+    
 }
 form {
     background-color: #fff;
@@ -19,18 +20,21 @@ form {
 h2 {
     text-align: center;
     margin-bottom: 20px;
+    color:black;
 }
 h1 {
     text-align: center;
     margin-bottom: 24px;
+    color:black;
 }
 input[type="text"], input[type="email"], input[type="password"] {
     width: calc(100% - 20px);
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    color:black;
     box-sizing: border-box;
+    border-radius: 10px;
 }
 input[type="submit"] {
     width: 100%;
@@ -40,9 +44,16 @@ input[type="submit"] {
     background-color: #007bff;
     color: #fff;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 10px;
     transition: background-color 0.3s ease;
 }
 input[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+.signup-form{
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:20px;
+    margin-top:20px;
 }

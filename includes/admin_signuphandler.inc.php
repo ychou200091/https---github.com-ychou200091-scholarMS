@@ -11,13 +11,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     try{
         require_once("dbh.inc.php");
         
-        require_once("signup_model.inc.php");
-        require_once("signup_view.inc.php");
-        require_once("signup_contr.inc.php");
+        require_once("admin_signup_model.inc.php");
+        require_once("admin_signup_contr.inc.php");
         #require_once("config.php");
 
 
-        $query = "INSERT INTO users (username,password,email) VALUES (:username,:pwd,:email);";
+        
         # username,$password,$email
         $errors = [];
 
@@ -50,7 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo "<p>no errors</p>";
         }
         create_user($pd0, $username, $password, $email);
-      
+        
         $pd0=null;
         $stmt = null;
         header("Location: {$_SERVER['HTTP_REFERER']}"."?signup=success");
