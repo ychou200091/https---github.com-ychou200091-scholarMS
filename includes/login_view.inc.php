@@ -23,8 +23,14 @@ function check_login_errors(){
 }
 function set_login_section(){
     if(isset($_SESSION["user_id"])){
-        echo '<p>[ '.$_SESSION["username"]. ' ]  <a href="includes/logout.inc.php">Logout</a></p>';
-        echo '';
+        if (substr($_SESSION["username"], 0, 6) === "admin-") {
+            // User is an admin
+            echo '<a href="aindex.php">Admin Console</a>';
+            echo '<p>[ '.$_SESSION["username"]. ' ]  <a href="../includes/logout.inc.php">Logout</a></p>';
+        } 
+        else{
+            echo '<p>[ '.$_SESSION["username"]. ' ]  <a href="includes/logout.inc.php">Logout</a></p>';
+        }
     }else{
         echo '<a href="./login.php">Login</a> / <a href="signup.php">Sign Up</a>';
     }
