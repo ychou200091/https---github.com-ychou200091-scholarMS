@@ -43,6 +43,10 @@
             <button>Logout</button>
         </form>
     </div>
+
+    <link rel="stylesheet" href="bin/header_footer_styles.css">
+    <?php include 'header.php'; ?>
+    <?php include 'footer.php'?>
 </body>
 </html>
 
