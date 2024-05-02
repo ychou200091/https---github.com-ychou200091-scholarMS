@@ -1,7 +1,8 @@
 <?php
     # import session settings
-    require_once "includes/config.php";
     header("Location: {$_SERVER['HTTP_REFERER']}");
+    require_once "includes/config.php";
+    
     require_once "includes/login_view.inc.php";
 
     error_reporting(1);

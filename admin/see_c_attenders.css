@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.attendies {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.attendies ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.attendies li {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    background-color: #f9f9f9;
+    border-radius: 3px;
+}
+
+.attendies li:nth-child(even) {
+    background-color: #e9e9e9;
+}

@@ -57,7 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Close database connection
-    $pdo = null;
+    $pd0 = null;
+    
 } else {
     $_SESSION["conf_message"] = "Form submission method not allowed!";
     header("Location: {$_SERVER['HTTP_REFERER']}");

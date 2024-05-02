@@ -25,14 +25,14 @@ function set_login_section(){
     if(isset($_SESSION["user_id"])){
         if (substr($_SESSION["username"], 0, 6) === "admin-") {
             // User is an admin
-            echo '<a href="aindex.php">Admin Console</a>';
+            echo '<a href="/admin/aindex.php">Admin Console</a>';
             echo '<p>[ '.$_SESSION["username"]. ' ]  <a href="../includes/logout.inc.php">Logout</a></p>';
         } 
         else{
             echo '<p>[ '.$_SESSION["username"]. ' ]  <a href="includes/logout.inc.php">Logout</a></p>';
         }
     }else{
-        echo '<a href="./login.php">Login</a> / <a href="signup.php">Sign Up</a>';
+        echo '<a href="/login.php">Login</a> / <a href="/signup.php">Sign Up</a>';
     }
 }
 function show_login_user(){

@@ -2,6 +2,15 @@
     # import session settings
     require_once "../includes/config.php";
     error_reporting(1);
+    // Check if the user is logged in and if they are an admin
+    if(isset($_SESSION["username"]) && strpos($_SESSION["username"], "admin-") === 0) {
+        // User is logged in and is an admin, do nothing
+    } else {
+        // Redirect to the home page
+        header("Location: /index.php");
+        die(); // Make sure to exit after redirection
+    }
+    require_once "create_conference_view.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +32,10 @@
         <button onclick="window.location.href='create_conference.php'">Create a Conference</button>
         <table class="display_conferences">
             <tr>
-                <th>Actions</th>
+                <th>Edit</th>
+                <th>Del</th>
+                <th>Reg</th>
+                <th>Paper</th>
                 <th>ID</th>
                 <th>Conference Name</th>
                 <th>Location</th>
@@ -32,24 +44,29 @@
                 <th>Date</th>
                 <th>Paper Due Date</th>
                 
-            </tr>
+            </tr> 
             <?php
             // Fetch conferences from the database and display them in rows
             // Replace this with your database query
-            $conferences = array(
-                array("1", "Conference 1", "Location 1", "Call for Papers 1", "Description 1", "Date 1", "Due Date 1"),
-                array("2", "Conference 2", "Location 2", "Call for Papers 2", "Description 2", "Date 2", "Due Date 2"),
-                // Add more conferences as needed
-            );
+            
+            require_once "query_existing_conferences.php";
 
             foreach ($conferences as $conference) {
                 echo "<tr>";
-                echo "<td>
-                        <button onclick=\"window.location.href='edit_conference.php?id={$conference[0]}&name={$conference[1]}'\">Edit</button>
-                        <button onclick=\"window.location.href='delete_conference.php?id={$conference[0]}'\">Delete</button>
-                        <button onclick=\"window.location.href='see_c_attenders.php?id={$conference[0]}&name={$conference[1]}'\">See Attenders</button>
-                        <button onclick=\"window.location.href='view_paper_submissions.php?id={$conference[0]}&name={$conference[1]}'\">View Paper Submissions</button>
-                        </td>";
+                echo "  <td>
+                            <button onclick=\"window.location.href='edit_conference.php?id={$conference['conference_id']}&name={$conference['conference_name']}'\">Edit</button>
+                        </td>
+                        <td> 
+                            <button onclick=\"window.location.href='delete_conference.php?id={$conference['conference_id']}&name={$conference['conference_name']}'\">Delete</button>
+                        </td>
+                        <td> 
+                            <button onclick=\"window.location.href='see_c_attenders.php?id={$conference['conference_id']}&name={$conference['conference_name']}'\">See Attenders</button>
+                        </td>
+
+                        <td> 
+                            <button onclick=\"window.location.href='view_paper_submissions.php?id={$conference['conference_id']}&name={$conference['conference_name']}'\">View Paper Submissions</button>
+                        </td>
+                        ";
                 
                 
                 foreach ($conference as $value) {
@@ -58,8 +75,14 @@
                 
                 echo "</tr>";
             }
+            echo '<br>';
+            if(isset($_SESSION["conf_message"])){
+                echo '<p>'.$_SESSION["conf_message"].'<\p>';
+                unset($_SESSION["conf_message"]);
+            }
             ?>
         </table>
+        <?php display_message();?>
     </div></div>
 
     <?php include '../footer.php'?>
