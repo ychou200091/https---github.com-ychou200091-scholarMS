@@ -50,14 +50,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["conf_message"] = "Conference information has been successfully added!";
         
         header("Location: {$_SERVER['HTTP_REFERER']}");
+        // Close database connection
+        $stmt = null;
+
+        die();
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
         $_SESSION["conf_message"] = $e->getMessage();
         header("Location: {$_SERVER['HTTP_REFERER']}");
+        die();
     }
 
-    // Close database connection
-    $pd0 = null;
     
 } else {
     $_SESSION["conf_message"] = "Form submission method not allowed!";

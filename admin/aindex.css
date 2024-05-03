@@ -9,6 +9,7 @@ body {
     color:#0056b3;
     
 }
+
 .container{
     padding:10px;
 }
@@ -41,13 +42,6 @@ h1 {
     padding: 10px; /* Optional: Add padding for spacing */
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
 
 button {
     white-space:normal;
@@ -61,6 +55,10 @@ button {
     cursor: pointer;
     
 }
+button:hover {
+    background-color: #0056b3;
+}
+
 
 table {
     text-align: left;
@@ -80,8 +78,4 @@ th {
     padding: 8px;
     background-color: #f2f2f2;
     
-}
-
-button:hover {
-    background-color: #0056b3;
 }

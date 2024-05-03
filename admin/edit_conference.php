@@ -1,11 +1,15 @@
 <?php
-
+require_once "../includes/config.php";
 // Set session variables with conference id and name
 $conf_id = $_GET["id"];
 $conf_name = $_GET["name"];
-require_once "create_conference_view.php";
-require_once "../includes/config.php";
 
+$_SESSION["conf_id"] = $conf_id;
+require_once "display_admin_msg.php";
+require_once "../includes/config.php";
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
 
 ?>
@@ -16,7 +20,7 @@ require_once "../includes/config.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Conference Information</title>
     <link rel="stylesheet" href="create_conferences_styles.css">
-    <link rel="stylesheet" href="../../bin/header_footer_styles.css">
+    <link rel="stylesheet" href="../bin/header_footer_styles.css">
 
 </head>
 <body>

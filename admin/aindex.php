@@ -53,6 +53,7 @@
 
             foreach ($conferences as $conference) {
                 echo "<tr>";
+                
                 echo "  <td>
                             <button onclick=\"window.location.href='edit_conference.php?id={$conference['conference_id']}&name={$conference['conference_name']}'\">Edit</button>
                         </td>
