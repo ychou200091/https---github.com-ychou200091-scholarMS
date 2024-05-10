@@ -24,29 +24,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $errors["incorrect_password"] = "Incorrect password.";
         }
 
-        require_once("config.php");
+        require_once "config.php";
 
         if($errors){
             
             $_SESSION["errors_login"] = $errors;
             #session_regenerate_id();
-            
             header("Location: " . $_SERVER["HTTP_REFERER"]);
             exit();
         }
-        #require_once("config.php");
+        
         #update session info, set login-user
+        
         $new_session_id = session_create_id();
-        $session_id = $new_session_id . "_".$result["user_id"];
+        $session_id = $new_session_id.$result["user_id"];
         session_id($session_id);
         
         $_SESSION["user_id"] = $result["user_id"] ;
         $_SESSION["username"] = htmlspecialchars($result["username"] );
         $_SESSION["last_regeneration"] = time();
+        
         header("Location: ../index.php?login=success");
         
 
-        $pd0 = null;
+        
         $stmt = null;
         die();
         

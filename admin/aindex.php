@@ -29,7 +29,7 @@
     <h2>Conference Information</h2>
     <div class="container">
     <div class="main">
-        <button onclick="window.location.href='create_conference.php'">Create a Conference</button>
+        <button class="create_conf_button" onclick="window.location.href='create_conference.php'">Create a Conference</button>
         <table class="display_conferences">
             <tr>
                 <th>Edit</th>

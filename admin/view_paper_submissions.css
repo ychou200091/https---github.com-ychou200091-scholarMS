@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding:0;
+    display: contents;
+    align-items: center;
+    height: 100vh;
+    color:#0056b3;
+    
+}
+
+.container{
+    padding:10px;
+}
+/* Style the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Style table header */
+th {
+    background-color: #f2f2f2;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Style table data cells */
+td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style download button */
+button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Style update button */
+button.update {
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Style dropdown select */
+select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style dropdown options */
+option {
+    padding: 5px;
+}
+
+/* Hover effect on buttons */
+button:hover, button.update:hover {
+    opacity: 0.8;
+}

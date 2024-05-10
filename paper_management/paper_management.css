@@ -41,9 +41,8 @@ h1 {
     border: 1px solid #ccc; /* Optional: Add border for clarity */
     padding: 10px; /* Optional: Add padding for spacing */
 }
-.create_conf_button{
-    max-height:80px;
-}
+
+
 button {
     white-space:normal;
     min-height: 50px;

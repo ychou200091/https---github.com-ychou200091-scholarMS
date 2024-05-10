@@ -1,10 +1,9 @@
+/* styles.css */
 
 body {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color:darkgray;
-   
 }
 
 .container {
@@ -18,7 +17,6 @@ body {
 
 h1 {
     text-align: center;
-    
 }
 
 form {

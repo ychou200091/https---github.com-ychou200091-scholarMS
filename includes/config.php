@@ -1,7 +1,6 @@
 <?php   
 
-#echo "<p>Session status: " . session_status() . "</p>";
-
+// echo "<p>Session status: " . session_status() . "</p>";
 
 if(session_status() == 0 || session_status() == 1){
     session_start();
@@ -20,14 +19,31 @@ session_set_cookie_params(
     "httponly" => true, # prevent javascript modification
     ]
 );
+// echo "<p>Session status: " . session_status() . "</p>";
+// if (!is_writable(session_save_path())) {
+//     echo 'Session path "'.session_save_path().'" is not writable for PHP!'; 
+// }else{
+//     echo 'Session path "'.session_save_path().'" is writable for PHP!'; 
+// }
+
+// if(isset($_SESSION["user_id"])){
+//     echo "<p>user_id: " . $_SESSION["user_id"] . "</p>";
+// }
+// if(isset($_SESSION["username"])){
+//     echo "<p>username: " . $_SESSION["username"] . "</p>";
+// }
+//echo "<p>Session status: " . session_status() . "</p>";
+
 
 $interval = 60*30; # 30 minutes
 
 # Goal: regenerate session cookie periodically for security
-if(!isset($_SESSION['user_id'])){ # case1: login successful
+if(isset($_SESSION['user_id'])){ # case1: login successful
     if(!isset($_SESSION["last_regeneration"])){ # init session with a secure id.
+        // echo "<p> regenerate_session_id111</p>";
         regenerate_session_id_login();
     }else{ # regenerate session id periodically
+        // echo "<p> regenerate_session_id_login</p>";
         if(time() - $_SESSION["last_regeneration"] >= $interval) { 
             regenerate_session_id_login();
         }
@@ -35,8 +51,10 @@ if(!isset($_SESSION['user_id'])){ # case1: login successful
 }
 else { # case2: not login yet
     if(!isset($_SESSION["last_regeneration"])){ # init session with a secure id.
+        // echo "<p> regenerate_session_id</p>";
         regenerate_session_id();
     }else{ # regenerate session id periodically
+        // echo "<p> update last_regeneration</p>";
         if(time() - $_SESSION["last_regeneration"] >= $interval) { 
             regenerate_session_id();
         }
@@ -44,10 +62,11 @@ else { # case2: not login yet
 }
 function regenerate_session_id_login(){
     $new_session_id = session_create_id();
-    $session_id = $new_session_id . "_".$_SESSION['user_id'];
+    $session_id = $new_session_id . "-".$_SESSION['user_id'];
     session_id($session_id);
-
+    
     $_SESSION["last_regeneration"] = time();
+    // echo "<p>session restarted</p>";
 
 }
 

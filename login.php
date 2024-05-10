@@ -19,6 +19,7 @@
     <?php include 'header.php'; ?>
     <div class="login-container">
         <h2>Login</h2>
+        
         <form action="includes/loginhandler.inc.php" method="POST">
             <div class="input-group">
                 <label for="username">Username:</label>
