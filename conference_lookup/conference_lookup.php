@@ -3,6 +3,7 @@
     error_reporting(1);
     require_once "../includes/config.php";
     require_once "../display_user_msg.php";
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
