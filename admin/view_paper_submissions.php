@@ -21,7 +21,7 @@ if(isset($_SESSION["conference_id"]) && isset($_SESSION["conference_name"])) {
     try{
         require_once "../includes/dbh.inc.php";
         // Query papers table for papers with the same conference ID
-        $query = "SELECT paper_id, user_id, authors, title, keywords, abstract, additional_comment, review_status FROM papers WHERE conference_id = :conference_id";
+        $query = "SELECT * FROM papers WHERE conference_id = :conference_id";
         $stmt = $pd0->prepare($query);
         $stmt->bindParam(":conference_id", $conference_id);
         $stmt->execute();
@@ -37,7 +37,6 @@ if(isset($_SESSION["conference_id"]) && isset($_SESSION["conference_name"])) {
     exit; // Stop script execution
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +69,7 @@ if(isset($_SESSION["conference_id"]) && isset($_SESSION["conference_name"])) {
             <tbody>
                 <?php foreach($papers as $paper): ?>
                 <tr>
-                    <td><button>Download</button></td>
+                    <td><a href="<?php echo $paper["file_path"]?>"><button >Download</button></a></td>
                     <td><?php echo $paper['paper_id']; ?></td>
                     <td><?php echo $paper['user_id']; ?></td>
                     <td><?php echo $paper['authors']; ?></td>
@@ -78,30 +77,29 @@ if(isset($_SESSION["conference_id"]) && isset($_SESSION["conference_name"])) {
                     <td><?php echo $paper['keywords']; ?></td>
                     <td><?php echo $paper['abstract']; ?></td>
                     <td><?php echo $paper['additional_comment']; ?></td>
-                    <td>
-                        <select>
-                            <option value="Not Reviewed" <?php if($paper['review_status'] == 'Not Reviewed') echo 'selected'; ?>>Not Reviewed</option>
-                            <option value="Under Review" <?php if($paper['review_status'] == 'Under Review') echo 'selected'; ?>>Under Review</option>
-                            <option value="Accepted" <?php if($paper['review_status'] == 'Accepted') echo 'selected'; ?>>Accepted</option>
-                            <option value="Rejected" <?php if($paper['review_status'] == 'Rejected') echo 'selected'; ?>>Rejected</option>
-                        </select>
-                    </td>
-                    <td><button onclick="updateReviewStatus(<?php echo $paper['paper_id']; ?>)">Update</button></td>
+                    <form action="update_review_status_handler.php" method="post" id="updateForm_<?php echo $paper['paper_id']; ?>">
+                        <td>
+                            <select name="review_status" id="reviewStatus_<?php echo $paper['paper_id']; ?>">
+                                <option value="Not Reviewed" <?php if($paper['review_status'] == 'Not Reviewed') echo 'selected'; ?>>Not Reviewed</option>
+                                <option value="Under Review" <?php if($paper['review_status'] == 'Under Review') echo 'selected'; ?>>Under Review</option>
+                                <option value="Accepted" <?php if($paper['review_status'] == 'Accepted') echo 'selected'; ?>>Accepted</option>
+                                <option value="Rejected" <?php if($paper['review_status'] == 'Rejected') echo 'selected'; ?>>Rejected</option>
+                            </select>
+                        </td>
+                    
+                        <td>
+                                <input type="hidden" name="paper_id" value="<?php echo $paper['paper_id']; ?>">
+                                <input type="hidden" name="user_id" value="<?php echo $paper['user_id']; ?>">
+                                <button type="submit" name="update_review_status">Update</button>
+                        </td>
+                    </form>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
             <?php display_message(); ?>
         </table>
     
-        <script>
-        function updateReviewStatus(paperId) {
-            var selectElement = document.querySelector("select");
-            var reviewStatus = selectElement.value;
-            <?php $_SESSION["paper_id"] = "' + paperId + '"; ?>
-            <?php $_SESSION["review_status"] = "' + reviewStatus + '"; ?>
-            window.location.href = "paper_status_update_handler.php";
-        }
-        </script>
+        
     </div>
     <?php include '../footer.php'?>
 </body>

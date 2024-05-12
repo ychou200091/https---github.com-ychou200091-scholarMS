@@ -32,7 +32,7 @@
         <p class="subtitle">1. Search for all conference information and related paper now</p>
         <p class="subtitle">2. Apply to attend the conference</p>
         <p class="subtitle">3. Submit your paper</p>
-        <a href="#search" class="search-btn">SEARCH FOR CONFERENCE</a>
+        <a href="/conference_lookup/conference_lookup.php" class="search-btn">SEARCH FOR CONFERENCE</a>
     </section>
     <?php include 'footer.php'?>
     

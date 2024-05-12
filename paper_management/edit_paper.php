@@ -1,7 +1,8 @@
 <?php
 require_once "../includes/config.php";
 require_once "../includes/dbh.inc.php";
-session_start(); // Start session if not already started
+require_once "../display_user_msg.php";
+
 
 // Check if paper ID is set in the URL parameter
 if (!isset($_GET["paper_id"])) {
@@ -20,13 +21,37 @@ try {
     $stmt->bindParam(":paper_id", $paper_id, PDO::PARAM_INT);
     $stmt->execute();
     $paper = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    // echo var_dump($paper);
+    // echo "<br>";
     // Check if paper information is found
     if (!$paper) {
         $_SESSION["user_message"] = "Paper not found.";
         header("Location: {$_SERVER['HTTP_REFERER']}");
         exit;
     }
+    if($paper["review_status"]=="Accepted"){
+        $_SESSION["user_message"] = "Paper is Accepted, unable to edit this paper.";
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit;
+    }
+    //$_SESSION["conference_id"] = $paper["conference_id"];
+    // check if conference paper due date has passed
+    $query = "SELECT conference_id,paper_due_date FROM conferences WHERE conference_id = :conference_id AND paper_due_date >= CURDATE()";
+    $stmt = $pd0->prepare($query);
+    $stmt->bindParam(":conference_id", $paper["conference_id"], PDO::PARAM_INT);
+    $stmt->execute();
+    $conf = $stmt->fetch(PDO::FETCH_ASSOC);
+    #echo "<br>";
+    #echo var_dump($conf);
+    if($conf){ // not passed
+        #echo var_dump($conf);
+    }else{ // time has passed
+        $_SESSION["user_message"] = "Paper due date has passed, unable to edit this paper.";
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit;
+    }
+    //徵稿截止前，可以持續修改資料及檔案。
+    //一旦徵稿截止，若已經審核通過，即無法修改或刪除。
 } catch (PDOException $e) {
     $_SESSION["user_message"] = "Error: " . $e->getMessage();
     header("Location: {$_SERVER['HTTP_REFERER']}");
@@ -68,17 +93,22 @@ try {
             <div class="form-group">
                 <label for="filePath">File Path</label>
                 <input type="file" id="file" name="file" accept=".pdf">
-                <?php //echo "<p>Current File Path: <?php echo $paper['file_path']</p> ;?>";
+                <a href=<?php echo $paper['file_path']?>> 
+                    <button type="button">Download Orginal File</button>
+                </a>
+                <?php //echo "<p>Current File Path: <?php echo $paper['file_path']</p> ;?>
                 
             </div>
             <div class="form-group">
                 <label for="additionalComment">Additional Comment</label>
                 <textarea id="additionalComment" name="additionalComment" rows="5"><?php echo $paper['additional_comment']; ?></textarea>
             </div>
+            
             <div class="form-group">
                 <input type="submit" value="Submit">
             </div>
         </form>
+        <?php display_message()?>
     </div>
     
     <?php include '../footer.php'; ?>

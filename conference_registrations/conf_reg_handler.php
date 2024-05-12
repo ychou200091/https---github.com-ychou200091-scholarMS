@@ -1,8 +1,8 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -47,7 +47,54 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->bindParam(":representative_unit", $representative_unit);
         $stmt->bindParam(":registration_date", $registration_date);
         $stmt->execute();
+        
+        // ======================================
+        // Send Email to confirm registration
+        require_once "../dbs_phpmailer/func_sendemail_sample.php";
+        $sql = "SELECT conference_name, paper_due_date FROM conferences WHERE conference_id = :conferenceID";
+        $stmt = $pd0->prepare($sql);
+        $stmt->bindParam(':conferenceID', $conf_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $conference = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($conference) {
+            $conference_name=$conference['conference_name'];
+            $paper_due_date=$conference['paper_due_date'];
+            echo "Conference Name: " . $conference['conference_name'] . "<br>";
+            echo "Paper Due Date: " . $conference['paper_due_date'] . "<br>";
+        } else {
+            echo "Conference not found.";
+            exit;
+        }
 
+        $email_sender_email    = "M12304011@nsysu.edu.tw";
+        $email_sender_name     = "Scholar MS";
+        $email_recipient_email = $email;
+        $email_recipient_name  = $_SESSION["username"];
+        $email_subject      = "Registration Submitted Successfully";
+        $email_body         = "<h2>Registration Submitted Successfully</h2> <br>
+                            Conference Title: {$conference_name} <br>
+                            Last Name: {$last_name} <br>
+                            First Name: {$first_name} <br>
+                            Email: {$email} <br>
+                            Phone Number: {$phone_number} <br>
+                            Meal Preference: {$meal_preference} <br>
+                            Representative Unit: {$representative_unit} <br>
+                            Registration Date: {$registration_date} <br>
+                            Thank you for your submission, <br>
+                            ScholarMS <br>
+                            ";
+
+        $msg = '';
+        $status_email = sendemail_sample($email_sender_email, 
+                                        $email_sender_name, 
+                                        $email_recipient_email, 
+                                        $email_recipient_name, 
+                                        $email_subject, 
+                                        $email_body);
+        $msg = '<h2>Email寄送狀態：</h2><p>'.$status_email.'</p>';
+        
+        echo "<script>console.log('{$msg}' );</script>";
         // Redirect to previous page with success message
         $_SESSION["user_message"] = "Registration submitted successfully.";
         header("Location:  ../conference_lookup/conference_lookup.php");

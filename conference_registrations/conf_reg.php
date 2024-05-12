@@ -3,6 +3,17 @@ require_once "../display_user_msg.php";
 require_once "../includes/dbh.inc.php";
 require_once "../includes/config.php";
 // Check if conference ID and name are provided
+if (!isset($_SESSION["user_id"])) {
+    $_SESSION["user_message"] = "*Please login first*";
+    header("Location: {$_SERVER['HTTP_REFERER']}");
+    exit;
+}
+// Check if the user is logged in and if they are an admin
+if(isset($_SESSION["username"]) && strpos($_SESSION["username"], "admin-") === 0) {
+    $_SESSION["user_message"] = "*Please use an user account*";
+    header("Location: {$_SERVER['HTTP_REFERER']}");
+    die();
+} 
 if(isset($_GET["id"]) && isset($_GET["name"])) {
     // Sanitize input
     $conf_id = $_GET["id"];

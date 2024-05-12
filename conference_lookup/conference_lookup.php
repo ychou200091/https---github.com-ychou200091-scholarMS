@@ -25,13 +25,15 @@
       <?php display_message();?>
         <table class="display_conferences">
             <tr>
-                <th>Paper</th>
+                <th>Lookup Paper</th>
+                <th>Submit Paper</th>
                 <th>Reg</th>
                 <th>ID</th>
                 <th>Conference Name</th>
                 <th>Location</th>
                 <th>Call for Papers</th>
-                <th>Description</th>
+                <th class="description-column">Description</th>
+                
                 <th>Date</th>
                 <th>Paper Due Date</th>
                 
@@ -44,7 +46,9 @@
 
             foreach ($conferences as $conference) {
                 echo "<tr>";
-                
+                echo "  <td>
+                            <button onclick=\"window.location.href='lookup_conf_paper.php?id={$conference['conference_id']}&name={$conference['conference_name']}'\">Lookup Paper</button>
+                        </td>";
                 echo "  <td>
                             <button onclick=\"window.location.href='submit_new_paper.php?id={$conference['conference_id']}&name={$conference['conference_name']}'\">Submit New Paper</button>
                         </td>

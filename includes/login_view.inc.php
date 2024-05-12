@@ -29,7 +29,7 @@ function set_login_section(){
             echo '<p>[ '.$_SESSION["username"]. ' ]  <a href="../includes/logout.inc.php">Logout</a></p>';
         } 
         else{
-            echo '<p>[ '.$_SESSION["username"]. ' ]  <a href="includes/logout.inc.php">Logout</a></p>';
+            echo '<p>[ '.$_SESSION["username"]. ' ]  <a href="../includes/logout.inc.php">Logout</a></p>';
         }
     }else{
         echo '<a href="/login.php">Login</a> / <a href="/signup.php">Sign Up</a>';

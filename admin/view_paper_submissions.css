@@ -12,11 +12,14 @@ body {
 
 .container{
     padding:10px;
+    min-height: 50vh;
 }
 /* Style the table */
 table {
     width: 100%;
+    max-width: 85vw;
     border-collapse: collapse;
+    
 }
 
 /* Style table header */

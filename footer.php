@@ -8,7 +8,7 @@
             <li><a href="/index.php">Home</a></li>
             <li><a href="/conference_lookup/conference_lookup.php">Conference & Paper</a></li>
             <li><a href="/paper_management/paper_management.php">Paper Management</a></li>
-            <li><a href="/conference_registrations/conference_registrations.php">Attend Conference</a></li>
+            <li><a href="/conference_registrations/conf_reg_user_display.php">Attend Conference</a></li>
         </ul>
     </div>
     <div class="footer-right">

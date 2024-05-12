@@ -12,15 +12,17 @@ body {
 
 .container{
     padding:10px;
+    min-height: 50vh;
+    max-width: 85vw;
+    margin:auto;
+    margin-bottom: 20px;
+    
 }
 .main{
-    width:80%;
+    width:90%;
     min-width:500px;
     margin:auto; 
     overflow-x: auto;
-
-    border:  1px solid black;
-    
 }
 
 h2 {
@@ -39,9 +41,13 @@ h1 {
     overflow-x: scroll; /* Allow horizontal scroll */
     white-space: nowrap; /* Prevent text from wrapping */
     border: 1px solid #ccc; /* Optional: Add border for clarity */
+    border-collapse: collapse;
     padding: 10px; /* Optional: Add padding for spacing */
 }
-
+.description-column {
+    width: 300px;
+    word-wrap: break-word;
+}
 
 button {
     white-space:normal;
